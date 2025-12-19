@@ -25,7 +25,8 @@ Run generate_cond_files.m
 
 4. Run the experiment.
 ```bash
-Run main.m
+For cloth run: Run RunEventDesign.m
+For block run: Run RunBlockDesign.m
 ```
    
 
