@@ -62,16 +62,13 @@ function p = Setup()
     
     %% == expCond ==
     p.expCond = struct();
-    p.expCond.cond_name = {'cloth_ctl', 'liquid_ctl', 'loc_tower', 'loc_dots', 'cloth_drape'};
+    p.expCond.cond_name = {'cloth_ctl', 'loc_tower'};
     p.expCond.cond_Dir = {};
     for i = 1:length(p.expCond.cond_name)
         p.expCond.cond_Dir= {p.expCond.cond_Dir{:}, fullfile(p.dirs.stimDir, p.expCond.cond_name{i})};
     end
     
-    p.expCond.runOrder = {'cloth_ctl', 'liquid_ctl', 'cloth_ctl', 'liquid_ctl', ...
-                          'cloth_ctl', 'liquid_ctl', 'cloth_ctl', 'liquid_ctl', 'liquid_ctl', ...
-                          'loc_dots',  'loc_dots', 'loc_tower', 'loc_tower', ...
-                          'cloth_drape', 'cloth_drape'};
+    p.expCond.runOrder = {'cloth_ctl', 'loc_tower', 'cloth_ctl', 'cloth_ctl', 'loc_tower'， 'cloth_ctl'};
 
    %% == Save ==
     saveDir = fullfile(pwd);
@@ -96,3 +93,4 @@ function p = Setup()
 %     p.monitor.centerY      = Y;
 %
 %     Screen('CloseAll');
+
