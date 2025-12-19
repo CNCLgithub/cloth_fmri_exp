@@ -68,7 +68,7 @@ function p = Setup()
         p.expCond.cond_Dir= {p.expCond.cond_Dir{:}, fullfile(p.dirs.stimDir, p.expCond.cond_name{i})};
     end
     
-    p.expCond.runOrder = {'cloth_ctl', 'loc_tower', 'cloth_ctl', 'cloth_ctl', 'loc_tower'， 'cloth_ctl'};
+    p.expCond.runOrder = {'cloth_ctl', 'loc_tower', 'cloth_ctl', 'cloth_ctl', 'loc_tower', 'cloth_ctl'};
 
    %% == Save ==
     saveDir = fullfile(pwd);
@@ -93,4 +93,5 @@ function p = Setup()
 %     p.monitor.centerY      = Y;
 %
 %     Screen('CloseAll');
+
 
