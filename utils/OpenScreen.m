@@ -1,5 +1,6 @@
 function win = OpenScreen(prefs)
-    Screen('Preference', 'SkipSyncTests', 1);
+    %Screen('Preference', 'SkipSyncTests', 1);
+    Screen('Preference', 'ConserveVRAM', 64);
     win = struct();
     win.screenNumber = max(Screen('Screens'));
     win.res = prefs.res;

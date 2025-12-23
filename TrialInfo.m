@@ -23,16 +23,7 @@ function b = TrialInfo(prefs)
         PROBE_COLOR         = prefs.probe.clothColor;
         PROBE_START_T       = prefs.probe.clothStartT;
         PROBE_LAST_T        = prefs.probe.lastT;
-    elseif strcmp(conditinoStruct_curRun(1).condition, 'liquid_ctl')
-        FIXATION_LEN        = 1.0;
-        MOVIE_LEN           = 4;
-        RESP_LEN            = 0;
-        JITTERED_ISI        = [2, 3, 4, 5];
-        PROBE_DIAM          = prefs.probe.liquidDiam;
-        PROBE_COLOR         = prefs.probe.liquidColor;
-        PROBE_START_T       = prefs.probe.liquidStartT;
-        PROBE_LAST_T        = prefs.probe.lastT;
-    end
+    
         
     %% ==== [wb] Params ====================
     %WB% event-related design

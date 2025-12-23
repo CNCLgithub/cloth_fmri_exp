@@ -1,20 +1,9 @@
-% p.expCond.runOrder = {'cloth_ctl',   'cloth_ctl',  'loc_dots',  ...
-%                       'loc_tower',   'liquid_ctl',  ...
-%                       'loc_dots',    'loc_tower',  'liquid_ctl', ...
-%                       'cloth_drape', 'cloth_drape'};
-% Run 1,3,5,7(cloth_ctl)  : 249 (4.15 min)
-% Run 2,4,6,8,9(liquid_ctl) : 195 (3.25 min)
-% Run 10(loc_dots)     : 311 (5.18 min)
-% Run 4(loc_tower)    : 460
-% Run xx(cloth_drape) : 286 seconds long
-%
-%
 sca;
 clear all; close all; clc;
 %% ==================== Params  ==========================================%
-screen_res     = [0 0 400 300];  
+%screen_res     = [0 0 400 300];  
 % screen_res   = [0 0 1920 1080];
-% screen_res   = [];
+screen_res   = [];
 study_name     = 'soft-physics';
 tr_counte      = 0;
 tr_timestamp   = [];

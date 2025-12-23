@@ -12,44 +12,6 @@ function b = BlockInfo(prefs)
     conditinoStruct_curRun = conditinoStruct_curRun.conditionStruct;
     b                      = struct(); 
     b.condition            = conditinoStruct_curRun(1).condition;
-    %% ===== [wb] Create orders ======================================
-    if strcmp(conditinoStruct_curRun(1).condition, 'loc_dots')
-        prefs.colors.back = prefs.colors.gray;
-        prefs.colors.fore = prefs.colors.black;
-        
-        trials_per_MainBlock  = 10; 
-        lengthMainBlocks_breakdown = [2, 0.2];  % [vid, isi]
-        lengthMainBlocks = sum(lengthMainBlocks_breakdown) * trials_per_MainBlock;  % in sec
-        % [wb] How many main blocks of each condition
-        condition(1) = 3;
-        condition(2) = 3;
-        condition(3) = 3;
-        condition(4) = 4;
-        numBlocksTotal = sum(condition);
-        
-        b.condNames{1}  = 'coh'; 
-        b.condNames{2}  = 'mat'; 
-        b.condNames{3}  = 'scram';
-        b.condNames{4}  = 'blank';
-        
-        blankBlocksIdx   = [1, 5, 9, 13];
-        
-    elseif strcmp(conditinoStruct_curRun(1).condition, 'cloth_drape')
-        trials_per_MainBlock  = 7; 
-        lengthMainBlocks_breakdown = [0.5, 2, 0.7];  % [vid, isi]
-        lengthMainBlocks = sum(lengthMainBlocks_breakdown) * trials_per_MainBlock;  % in sec
-        % [wb] How many main blocks of each condition
-        condition(1) = 4;
-        condition(2) = 4;
-        condition(3) = 5;
-        numBlocksTotal = sum(condition);
-        
-        b.condNames{1}  = 'nocloth'; 
-        b.condNames{2}  = 'cloth';
-        b.condNames{3}  = 'blank';
-        
-        blankBlocksIdx   = [1, 4, 7, 10, 13];
-    end
         
     %% ==== [wb] Create blocks seq ====================
     b.conds = zeros(1, numBlocksTotal)+length(condition);
