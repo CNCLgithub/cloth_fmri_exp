@@ -2,7 +2,7 @@ sca;
 clear all; close all; clc;
 %% ==================== Params  ==========================================%
 %screen_res     = [0 0 400 300];  
-% screen_res   = [0 0 1920 1080];
+%screen_res   = [0 0 1920 1080];
 screen_res   = [];
 study_name     = 'soft-physics';
 tr_counte      = 0;
