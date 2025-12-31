@@ -8,7 +8,8 @@ This repository contains code for running an fMRI passive viewing task with clot
 This project has been tested and is supported on the following configurations:
 
 - Matlab R2021a
-- Psychtoolbox 3.0.17
+- Psychtoolbox 3.0.18
+- Ubuntu 20.04.4 LTS
 ---
 
 ## ⚙️ Running
@@ -25,8 +26,7 @@ Run generate_cond_files.m
 
 4. Run the experiment.
 ```bash
-For cloth run: Run RunEventDesign.m
-For block run: Run RunBlockDesign.m
+Run main.m
 ```
    
 
