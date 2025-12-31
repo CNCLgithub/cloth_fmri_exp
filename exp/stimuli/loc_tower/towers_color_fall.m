@@ -13,9 +13,9 @@ function [] = towers_color_fall(prefs, kb_pointer, screen_res)
 %%
 subj_ID     = prefs.subj;
 run_num = -1;
-if prefs.runNum == 4
+if prefs.runNum == 2
     run_num = 1;
-elseif prefs.runNum == 7
+elseif prefs.runNum == 5
     run_num = 2;
 end
 keys        = prefs.keys;
@@ -70,6 +70,7 @@ end
 %% set up experiment
 for falg = 1
     Screen('Preference', 'SkipSyncTests', 1);
+    Screen('Preference', 'ConserveVRAM', 64);
     AssertOpenGL;
     KbReleaseWait; % Wait until user releases keys on keyboard
     screenNumber   = max(Screen('Screens'));
