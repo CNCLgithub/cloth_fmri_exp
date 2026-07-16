@@ -1,6 +1,8 @@
 # Visual Soft Object (fMRI study)
 
-This repository contains code for running an fMRI passive viewing task with cloth animations, along with a localizer task for identifying physics-related regions of interest (ROIs).
+This repository contains code for running an fMRI passive-viewing experiment using cloth animations, as well as a localizer task for identifying physics-related regions of interest (ROIs). The code was used in the paper:
+
+“Computational Modeling Reveals Dissociable Physics-Based and Statistical Object Representations in the Human Brain During Spontaneous Visual Processing.”
 
 
 ## 🖥️ System Requirements
