@@ -5,12 +5,12 @@ This repository contains code for running an fMRI passive viewing task with clot
 
 ## 🖥️ System Requirements
 
-This project has been tested and is supported on the following configurations:
+This project has been tested with the following configurations:
 
-- Matlab R2021a
-- Psychtoolbox 3.0.18
-- Ubuntu 20.04.4 LTS
----
+| Operating System | MATLAB | Psychtoolbox |
+|---|---|---|
+| Ubuntu 20.04.4 LTS | R2021a | 3.0.18 |
+| macOS Sequoia | R2021b | 3.0.18.13 |
 
 ## ⚙️ Running
 
