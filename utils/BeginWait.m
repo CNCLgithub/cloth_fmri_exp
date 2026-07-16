@@ -1,4 +1,4 @@
-function [tr_counter, ScanStartTimeSkippedBegin] = BeginWait(win, prefs, kb_pointer, tr_counter)
+function [tr_counter, ScanStartTimeSkippedBegin, tr_log] = BeginWait(win, prefs, kb_pointer, tr_counter, tr_log)
     pressed = 0;
     KbQueueFlush(kb_pointer);
     KbEventFlush(kb_pointer);
@@ -12,6 +12,7 @@ function [tr_counter, ScanStartTimeSkippedBegin] = BeginWait(win, prefs, kb_poin
         if pressed
             if find(firstPress) == prefs.keys.trigger
                 tr_counter = tr_counter+1;
+                tr_log = [tr_log, [tr_counter, GetSecs]];
                 KbQueueFlush(kb_pointer);
             end
             pressed = 0;

@@ -2,6 +2,7 @@ sca;
 clear all; 
 close all; 
 clc;
+% addpath './utils'
 RANDSeed = ClockRandSeed;
 
 %% ======================= Load  ==================================%
@@ -51,7 +52,7 @@ for cloth_ctl = 1
     for i = 1:length(cur_scene)
         for j = 1: length(stiff_mass)
             for k = 1: length(stiff_l_stiff)
-                stiff_l_ls{i} = [cur_scene{i}, '_mass_', stiff_mass{j}, '_bs_', stiff_l_stiff{k}, '.mov'];
+                stiff_l_ls{i} = [cur_scene{i}, '_mass_', stiff_mass{j}, '_bs_', stiff_l_stiff{k}, '.mp4'];
             end
         end
     end
@@ -60,7 +61,7 @@ for cloth_ctl = 1
     for i = 1:length(cur_scene)
         for j = 1: length(stiff_mass)
             for k = 1: length(sitff_h_stiff)
-                stiff_h_ls{i} = [cur_scene{i}, '_mass_', stiff_mass{j}, '_bs_', sitff_h_stiff{k}, '.mov'];
+                stiff_h_ls{i} = [cur_scene{i}, '_mass_', stiff_mass{j}, '_bs_', sitff_h_stiff{k}, '.mp4'];
             end
         end
     end

@@ -1,11 +1,5 @@
 function b = BlockInfo(prefs)
-% _________________________________________________________________________
-% Generate block information + trial information for each run.
-% 
-% HISTORY
-% 02/24/22   wbi  wrote itconditinoStruct_curRun = load(curRunCondFile);
-%
-% _________________________________________________________________________    
+
     run_num                = prefs.runNum; 
     curRunCondFile         = prefs.dirs.curRunCondFile;
     conditinoStruct_curRun = load(curRunCondFile);

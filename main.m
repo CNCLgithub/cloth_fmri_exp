@@ -1,16 +1,18 @@
 sca;
 clear all; close all; clc;
+Screen('Preference', 'SkipSyncTests', 2);
+Screen('Preference', 'ConserveVRAM', 64);
 %% ==================== Params  ==========================================%
-%screen_res     = [0 0 400 300];  
-%screen_res   = [0 0 1920 1080];
-screen_res   = [];
-study_name     = 'soft-physics';
+% [wb]: use extend display, check the resolution of the other display in "settings"
+screen_res   = [0 0 1920 1080]; 
+% screen_res   = [];
+study_name     = 'SoftObjects';
 tr_counte      = 0;
 tr_timestamp   = [];
 stop_exp       = false;
 dummymode      = 1;
 
-if isempty(screen_res),
+if isempty(screen_res)
     try
         % [wb]: Double check full screen.
         default = 'null';
@@ -21,13 +23,13 @@ if isempty(screen_res),
             if (strcmp(use_fullscr, 'n') == 1), error('quit by user'); end
         end 
         
-        Screen('Preference', 'SkipSyncTests', 1);
         [w, screen_res] = Screen('OpenWindow', max(Screen('Screens')), [0 0 0]);
         Screen('CloseAll');
     catch
         Screen('CloseAll');
     end
 end
+
 
 %% ==================== Inputs & Post-hoc prefs===========================%
 prefs = Setup(); 
@@ -39,6 +41,7 @@ prefs.dirs.curRunCondFile = '';
 prefs.subj                = '';
 prefs.runNum              = -1;
 prefs.res                 = screen_res;
+
 % -------------------------------------------------- %
 %WB%  debugmode
 defaultDebug = '0';
@@ -75,9 +78,15 @@ disp(['==> Run ' num2str(prefs.runNum) ', ' prefs.expCond.runOrder{prefs.runNum}
 KbName('UnifyKeyNames');
 if ~debugmode
     DEVICENAME = 'Current Designs, Inc. 932';
+    %DEVICENAME = 'Logitech G203 LIGHTSYNC Gaming Mouse Keyboard';
 else
-    DEVICENAME = 'AT Translated Set 2 keyboard';  %'Magic Keyboard'
+    if ismac
+        DEVICENAME = 'Apple Internal Keyboard / Trackpad'; % if use macbook air
+    else
+        DEVICENAME = 'AT Translated Set 2 keyboard';
+    end
 end
+
 
 [index, devName] = GetKeyboardIndices;
 for device = 1:length(index)
@@ -98,10 +107,8 @@ KbQueueStart(kb_pointer);
 
 %% ==================== Initialize ===================================%
 switch prefs.expCond.runOrder{prefs.runNum}
-    case {'cloth_ctl', 'liquid_ctl'}
+    case {'cloth_ctl'}
         design = 'trial';
-    case {'loc_dots'}
-        design = 'block';
     case {'loc_tower'}
         addpath(genpath(prefs.dirs.loc_tower_dir));
         towers_color_fall(prefs, kb_pointer, screen_res);
@@ -121,22 +128,20 @@ prefs.b   = b;
 win       = OpenScreen(prefs);
 T         = CreateDataTable(prefs, design);
 vid_param = GetVidRect(prefs, win, T);
+tr_log    = [];
 % --------------------------
-if (strcmp(design, 'trial')==1)
-    prefs.b.probe.probe_rect = GetProbeRect(prefs, win, vid_param, 0.5)
-end
 
 % -------------------------- trigger ------------------------------------%
 % ====== [wb] Waiting for TRs ======
 % KbQueueStart(kb_pointer);
 [tr_counter, ScanStartTime] = WaitForTrigger(win.ptr, prefs, kb_pointer, 'Waiting for scanner...');
-[tr_counter, ScanStartTimeSkippedBegin] = BeginWait(win.ptr, prefs, kb_pointer, tr_counter);
-% save(fullfile(prefs.dirs.subjDir, ['workspace_', num2str(prefs.runNum), '.mat']));
+tr_log = [tr_log, [tr_counter, ScanStartTime]];
+[tr_counter, ScanStartTimeSkippedBegin, tr_log] = BeginWait(win.ptr, prefs, kb_pointer, tr_counter, tr_log);
 save(['data.mat']);
 
 %% ==================== Run experiment ===================================%
 if (strcmp(design, 'trial')==1)
-    [T] = RunEventDesign(prefs, win, T, vid_param, kb_pointer, tr_counter, ScanStartTime, ScanStartTimeSkippedBegin);
+    [T, tr_log] = RunEventDesign(prefs, win, T, vid_param, kb_pointer, tr_counter, ScanStartTime, ScanStartTimeSkippedBegin, tr_log);
 elseif (strcmp(design, 'block')==1)
     [T] = RunBlockDesign(prefs, win, T, vid_param, kb_pointer, tr_counter, ScanStartTime, ScanStartTimeSkippedBegin);
 end
@@ -144,20 +149,4 @@ end
 %% ==================== del & rm ===================================%
 rmpath(genpath(prefs.dirs.utilDir)); savepath;
 rmpath(genpath(prefs.dirs.loc_tower_dir)); savepath;
-
-
-%% ==================== open a blank page ===========================%
-% pressed = 0;
-% while ~pressed
-%     [pressed, firstPress] = KbQueueCheck(kb_pointer);
-%     if pressed
-%         if find(firstPress) == prefs.keys.quit
-%             Screen('CloseAll');
-%             ShowCursor;
-%             sca;
-%             error('User quit');
-%         end
-%         pressed = 0;
-%     end
-% end
 

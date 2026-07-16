@@ -15,7 +15,6 @@ function  T = RunBlockDesign(prefs, win, T, vid_param,kb_pointer, tr_counter, Sc
                 curr_start = GetSecs;
                 if (strcmp(trials_info.conds(curr_trial), 'txt') == 1),
                     Screen('FillRect', win.ptr, prefs.colors.back);
-                    % Screen('FillOval', win.ptr, prefs.colors.fore, CenterRect([0 0 8 8], Screen('Rect', win.ptr)));
                     DrawCross(win.ptr, win.centerX, win.centerY);
                     T.RealOnset(event_counter) = Screen('Flip', win.ptr);
 
